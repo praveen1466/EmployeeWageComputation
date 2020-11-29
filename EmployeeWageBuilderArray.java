@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class EmployeeWageBuilderArray implements IComputeEmpWage {
+
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
@@ -16,11 +17,9 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 	private Map<String, CompanyEmpWage> companyEmpWageMap;
 
 
-
 	public EmployeeWageBuilderArray() {
 		companyEmpWageList = new LinkedList<CompanyEmpWage>();
 		companyEmpWageMap = new HashMap<String, CompanyEmpWage>();
-
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
@@ -28,7 +27,6 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 
 		companyEmpWageList.add(companyEmpWage);
 		companyEmpWageMap.put(company, companyEmpWage);
-
 	}
 
 	public void computeEmpWage() {
@@ -36,7 +34,6 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 			CompanyEmpWage company = companyEmpWageList.get(i);
 			company.setTotalEmpWage(this.computeEmpWage(company));
 			System.out.println(company);
-
 		}
 	}
 
@@ -47,6 +44,7 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 			totalWorkingDays++;
 
 			int empCheck = random.nextInt(3);
+
 			switch (empCheck) {
 			case IS_PART_TIME:
 				empHrs = 4;
@@ -59,8 +57,7 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 				empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs + "     " + "Daily wage"
-					+ (empHrs * totalWorkingDays));
+			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs);
 		}
 
 		return totalEmpHrs * companyEmpWage.empRatePerHour;
@@ -78,5 +75,4 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 		return companyEmpWageMap.get(company).totalEmpWage;
 
 	}
-
 }
