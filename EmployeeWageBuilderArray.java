@@ -16,10 +16,10 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 	private Map<String, CompanyEmpWage> companyEmpWageMap;
 
 
+
 	public EmployeeWageBuilderArray() {
 		companyEmpWageList = new LinkedList<CompanyEmpWage>();
 		companyEmpWageMap = new HashMap<String, CompanyEmpWage>();
-
 
 	}
 
@@ -59,7 +59,8 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 				empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs);
+			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs + "     " + "Daily wage"
+					+ (empHrs * totalWorkingDays));
 		}
 
 		return totalEmpHrs * companyEmpWage.empRatePerHour;

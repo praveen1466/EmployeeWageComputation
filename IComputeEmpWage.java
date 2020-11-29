@@ -1,4 +1,3 @@
-  
 package employeewage;
 
 public interface IComputeEmpWage {
