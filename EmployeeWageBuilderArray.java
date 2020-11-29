@@ -2,7 +2,7 @@ package employeewage;
 
 import java.util.Random;
 
-public class EmployeeWageBuilderArray {
+public class EmployeeWageBuilderArray implements IComputeEmpWage {
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
@@ -14,19 +14,19 @@ public class EmployeeWageBuilderArray {
 		companyEmpWage = new CompanyEmpWage[5];
 	}
 
-	private void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+	public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
 		companyEmpWage[numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
 		numOfCompany++;
 	}
 
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i = 0; i < numOfCompany; i++) {
 			companyEmpWage[i].setTotalEmpWage(this.computeEmpWage(companyEmpWage[i]));
 			System.out.println(companyEmpWage[i]);
 		}
 	}
 
-	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
+	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 		Random random = new Random();
 		while (totalEmpHrs <= companyEmpWage.maxHoursPerMonth && totalWorkingDays < companyEmpWage.numOfWorkingDays) {
