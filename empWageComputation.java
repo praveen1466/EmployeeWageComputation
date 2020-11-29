@@ -1,44 +1,59 @@
 package employeewage;
 
-import java.util.Random;
-
 public class EmployeeWageMethod {
-	public void empWage() {
-		int ratePerHour = 20;
-		int empHour = 0;
-		int NUM_WORKING_DAYS = 20;
-		int MAX_HRS_IN_MONTH = 100;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
-		while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS) {
-			totalWorkingDays++;
-			totalEmpHrs++;
-			Random rand = new Random();
-			int empAttendance = rand.nextInt(2);
-			System.out.println("Generated number for Employee is which type :" + empAttendance);
 
-			switch (empAttendance) {
-			case 0:
-				System.out.println("Employee is full-time");
-				empHour = 8;
-				int salary = (empHour * ratePerHour);
-				System.out.println("salary is :" + salary);
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	private final String Company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHoursPerMonth;
+
+	EmployeeWageMethod(String Company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+
+		this.Company = Company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHoursPerMonth = maxHoursPerMonth;
+
+	}
+	private int computeEmpWage() {
+
+		int empHrs = 0;
+		int empWage = 0;
+		int TotalEmpWage = 0;
+		int TotalWorkingHours = 0;
+		int day = 0;
+
+		while (day < numOfWorkingDays || TotalWorkingHours <= maxHoursPerMonth)
+
+		{
+			double empCheck = Math.floor(Math.random() * 10 % 3);
+			day++;
+			switch ((int) empCheck) {
+			case IS_FULL_TIME:
+				empHrs = 8;
 				break;
-			case 1:
-				System.out.println("Employee is part-time");
-				empHour = 4;
-				int salary1 = (empHour * ratePerHour);
-				System.out.println("salary is :" + salary1);
+			case IS_PART_TIME:
+				empHrs = 4;
 				break;
 			default:
-				System.out.println("Employee is absent");
-			}
+				empHrs = 0;
 
+			}
+			TotalWorkingHours += empHrs;
+			empWage = empHrs * empRatePerHour;
+			TotalEmpWage += empWage;
 		}
+		return TotalEmpWage;
+
 	}
 
 	public static void main(String[] args) {
-		EmployeeWageMethod emp = new EmployeeWageMethod();
-		emp.empWage();
+		EmployeeWageMethod dMart = new EmployeeWageMethod("Dmart", 20, 20, 100);
+		EmployeeWageMethod Reliance = new EmployeeWageMethod("Reliance", 30, 20, 80);
+		System.out.println("Total Employee wage of dMart : " + dMart.computeEmpWage());
+		System.out.println("Total Employee wage of Reliance : " + Reliance.computeEmpWage());
+		
 	}
-}
+
