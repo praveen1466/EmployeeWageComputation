@@ -1,3 +1,4 @@
+  
 package employeewage;
 
 public interface IComputeEmpWage {
@@ -6,4 +7,7 @@ public interface IComputeEmpWage {
 	public void computeEmpWage();
 
 	public int computeEmpWage(CompanyEmpWage companyEmpWage);
+
+	public int getTotalWage(String company);
+
 }
