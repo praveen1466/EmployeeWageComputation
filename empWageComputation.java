@@ -1,38 +1,44 @@
-import java.util.Random;
-public class empWageComputation {
-public static void main(String[] args) {
-	System.out.println("Welcome to Employee Wage Computation Program on Master Branch");
+package employeewage;
 
-   int empHrs;
-   int IS_PART_TIME=1;
-   int IS_FULL_TIME=2;
-   int EMP_RATE_PER_HR=20;
-   int MAX_HRS_IN_MONTH=10;
-   int NUM_WORKING_DAYS=20;
-   int totalEmpHrs=0;
-   int totalWorkingDays=0;
-   
-   while( totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS ) {
-         totalWorkingDays++;
-         
-         Random random=new Random();
-         int empAttendance=random.nextInt(3);
-         switch (empAttendance) {
-          case 1:
-                 empHrs=4;
-                 break;
-          case 2:
-                 empHrs=8;
-                 break;
-         default:
-                 empHrs=0;
-                  break;
-        }
-   totalEmpHrs=(totalEmpHrs + empHrs);
-   System.out.println("Total Employee Hours of a Month: "+totalEmpHrs);
-}
-   int totalSalary=(totalEmpHrs*EMP_RATE_PER_HR);
-   System.out.println("Total Salary of a Employee: "+totalSalary); 
- 
-  }
+import java.util.Random;
+
+public class EmployeeWageMethod {
+	public void empWage() {
+		int ratePerHour = 20;
+		int empHour = 0;
+		int NUM_WORKING_DAYS = 20;
+		int MAX_HRS_IN_MONTH = 100;
+		int totalEmpHrs = 0;
+		int totalWorkingDays = 0;
+		while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS) {
+			totalWorkingDays++;
+			totalEmpHrs++;
+			Random rand = new Random();
+			int empAttendance = rand.nextInt(2);
+			System.out.println("Generated number for Employee is which type :" + empAttendance);
+
+			switch (empAttendance) {
+			case 0:
+				System.out.println("Employee is full-time");
+				empHour = 8;
+				int salary = (empHour * ratePerHour);
+				System.out.println("salary is :" + salary);
+				break;
+			case 1:
+				System.out.println("Employee is part-time");
+				empHour = 4;
+				int salary1 = (empHour * ratePerHour);
+				System.out.println("salary is :" + salary1);
+				break;
+			default:
+				System.out.println("Employee is absent");
+			}
+
+		}
+	}
+
+	public static void main(String[] args) {
+		EmployeeWageMethod emp = new EmployeeWageMethod();
+		emp.empWage();
+	}
 }
